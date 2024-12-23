@@ -51,10 +51,3 @@ jobs:
         with:
           name: SmartFrameSdk
           path: SmartFrameSDK/build/outputs/aar/*.aar
-
-#      - name: 🚀 Upload AAR 📱
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: SmartFrameSdk
-#          path: SmartFrameSdk/build/outputs/apk/staging/debug/*.apk
-#          retention-days: 3
