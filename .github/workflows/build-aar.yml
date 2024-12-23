@@ -103,4 +103,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: SmartFrameSdk
-          path: SmartFrameSDK/build/outputs/aar/*.aar
+          path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
