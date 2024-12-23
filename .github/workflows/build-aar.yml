@@ -46,8 +46,15 @@ jobs:
         run: ./gradlew :SmartFrameSDK:assembleRelease
 
       # Upload the AAR as a workflow artifact
-      - name: Upload AAR
-        uses: actions/upload-artifact@v3
+#      - name: Upload AAR
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: SmartFrameSdk
+#          path: SmartFrameSDK/build/outputs/aar/*.aar
+
+      - name: 🚀 Upload AAR 📱
+        uses: actions/upload-artifact@v2
         with:
           name: SmartFrameSdk
-          path: SmartFrameSDK/build/outputs/aar/*.aar
+          path: SmartFrameSdk/build/outputs/apk/staging/debug/*.apk
+          retention-days: 3
