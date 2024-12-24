@@ -12,13 +12,12 @@ jobs:
   build-aar:
     name: Build AAR
     runs-on: ubuntu-latest
-
     steps:
       # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up JDK 17 (required for Android builds)
+      # Set up JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -38,71 +37,24 @@ jobs:
       - name: Build AAR
         run: ./gradlew :SmartFrameSDK:assembleRelease
 
+      # List files in the AAR output directory for debugging
+      - name: List files in AAR output directory
+        run: ls -al SmartFrameSDK/build/outputs/aar/
+
+      # Debug AAR Path
+      - name: Debug AAR Path
+        run: |
+          if [ -f SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar ]; then
+            echo "AAR file exists at the specified path."
+          else
+            echo "AAR file not found at SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar."
+            exit 1
+          fi
+
       # Upload the AAR as a workflow artifact
       - name: Upload AAR
         uses: actions/upload-artifact@v3
         with:
           name: SmartFrameSdk
-          path: SmartFrameSDK/build/outputs/aar/*.aar
-
-
-
-#---------------------------------------------
-
-
-#name: Build AAR
-#
-#on:
-#  push:
-#    branches:
-#      - main
-#  pull_request:
-#    branches:
-#      - main
-#
-#jobs:
-#  build-aar:
-#    name: Build AAR
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      # Checkout the code
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#
-#      # Set up JDK 17
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'zulu'
-#          java-version: '17'
-#
-#      # Cache Gradle dependencies
-#      - name: Cache Gradle dependencies
-#        uses: actions/cache@v3
-#        with:
-#          path: ~/.gradle/caches
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-#          restore-keys: |
-#            ${{ runner.os }}-gradle-
-#
-#      # Build the AAR
-#      - name: Build AAR
-#        run: ./gradlew :SmartFrameSDK:assembleRelease
-#
-#      # List files in the AAR output directory for debugging
-#      - name: List files in AAR output directory
-#        run: ls -al SmartFrameSDK/build/outputs/aar/
-#
-#      # Upload the AAR as a workflow artifact
-#      - name: Upload AAR
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: SmartFrameSdk
-#          path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
-
-
-
-#-----------------------------------
-
-
+          path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
+          retention-days: 3
