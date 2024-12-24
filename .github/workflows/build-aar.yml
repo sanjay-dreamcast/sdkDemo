@@ -52,9 +52,18 @@ jobs:
           fi
 
       # Upload the AAR as a workflow artifact
+#      - name: Upload AAR
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: SmartFrameSdk
+#          path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
+#          retention-days: 3
+
+      # Upload the AAR as a workflow artifact without ZIP compression
       - name: Upload AAR
         uses: actions/upload-artifact@v3
         with:
           name: SmartFrameSdk
           path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
+          if-no-files-found: error
           retention-days: 3
