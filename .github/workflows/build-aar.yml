@@ -61,7 +61,7 @@ jobs:
 
       # Upload the AAR as a workflow artifact without ZIP compression
       - name: Upload AAR
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SmartFrameSdk
           path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
