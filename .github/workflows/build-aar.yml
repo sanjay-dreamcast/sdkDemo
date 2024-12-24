@@ -172,3 +172,4 @@ jobs:
         with:
           name: SmartFrameSdk
           path: SmartFrameSDK/build/outputs/aar/SmartFrameSDK-release.aar
+          retention-days: 30
